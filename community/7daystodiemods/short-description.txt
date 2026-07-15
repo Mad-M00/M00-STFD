@@ -1,0 +1,10 @@
+Short description for mod-site listing fields (300 chars max incl. spaces).
+
+PRIMARY (296 chars):
+Were you raised in a barn? You flipped the switch, the door swung open... and stayed locked OPEN forever. STFD fixes doors: close the ones stuck open, pick the locked ones like a safe. Picks snap, zombies hear, sneaking helps. Your base and the trader stay vanilla. Shut the door on your way out.
+
+ALTERNATE (226 chars):
+That switch-opened door that's locked OPEN forever? Close it. That locked door you'd normally sledge? Pick it like a safe. Picks snap, zombies hear, sneak helps. Base doors and traders untouched. Shut the door on your way out.
+
+MINIMAL (164 chars, for tighter fields):
+Doors locked in the OPEN position? Fixed - close them. Locked doors? Lockpick them like a safe. Picks snap, zombies hear, sneaking helps. Were you raised in a barn?
