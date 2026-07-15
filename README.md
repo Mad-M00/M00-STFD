@@ -4,6 +4,8 @@
 [![Latest release](https://img.shields.io/github/v/release/Mad-M00/M00-STFD?label=release)](https://github.com/Mad-M00/M00-STFD/releases/latest)
 [![Dev version](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FMad-M00%2FM00-STFD%2Fbadges%2Fdev.json)](https://github.com/Mad-M00/M00-STFD/commits/main)
 
+![Shut the Frigging Door - shut open doors, pick locked ones](docs/images/banner.png)
+
 **Were you raised in a barn?**
 
 STFD is a 7 Days To Die mod that fixes doors. Doors that a switch or key
