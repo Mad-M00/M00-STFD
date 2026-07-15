@@ -1,9 +1,51 @@
-[b]1.0[/b] - initial public release
+BBCode for the site's changelog field.
+
+---
+
+[b][size=4]v1.0 - Initial release (July 2026)[/size][/b]
+
+[b]Shut It[/b]
 [list]
-[*]Shut It: doors opened by switches, keys and triggers are properly unlocked - close and reopen them freely. Applies on trigger, on chunk load, and on pressing E.
-[*]Pick It: closed locked world doors can be lockpicked like safes; difficulty tiers wood/iron/steel/vault, Lock Picking perk applies.
-[*]Noise: the unlock click can wake zombies right behind the door; a snapping pick can pull the room. Sneaking and From The Shadows muffle it. Server-authoritative in multiplayer.
-[*]Fair retries: progress survives snapped picks, retry break chance shrinks as the lock nears open, mercy cap guarantees the attempt after 4 snaps.
-[*]Fully configurable via STFDConfig.xml with live reload (stfd console command).
-[*]Never touches player-placed doors or trader areas.
+[*]Doors opened by switches, keys and triggers are properly unlocked - walk through, close them behind you, open them again.
+[*]Applies the moment a switch fires, when an area loads, and when you press E on a door that was already stuck open.
+[*]Works on existing saves and survives quest resets.
+[*]Covers everything that swings, slides or rolls: doors, vault doors, garage doors, roll-ups, hatches, jail doors, drawbridges.
+[/list]
+
+[b]Pick It[/b]
+[list]
+[*]Closed locked doors can be lockpicked - the same hold-to-pick timer as a safe or a police car.
+[*]Difficulty scales with the door: wood pops quickly, iron and steel take longer, a vault door will test your patience.
+[*]The Lock Picking perk applies exactly as it does to safes: faster picks, fewer breaks.
+[*]Progress survives a snapped pick, retries get safer the closer the lock is to giving, and after a few snaps on one door the next attempt is guaranteed. Locks open; they don't farm you.
+[/list]
+
+[b]Noise[/b]
+[list]
+[*]The click of a lock giving way can wake zombies directly behind the door.
+[*]A snapping pick rings out - the room and anything nearby may come looking.
+[*]Crouch to muffle it; the From The Shadows perk muffles it further, just like your footsteps.
+[*]No screamers: lock noise never touches the heat map.
+[/list]
+
+[b]What it never touches[/b]
+[list]
+[*]Player-placed doors: nobody can close, unlock or pick a door you built. Base security is exactly vanilla.
+[*]Trader gates: they lock for the night as always and cannot be picked.
+[*]Quest objectives: locked quest doors are pickable (same as they were always sledgeable), but objectives are never skipped and quest resets restore every lock.
+[/list]
+
+[b]Customising[/b]
+[list]
+[*]Everything lives in one plain text file (STFDConfig.xml): both feature switches, pick times and break chances per tier, per-door difficulty rules with wildcards, noise loudness, sneak muffling.
+[*]Apply edits without restarting: the stfd console command reloads the config and shows what any door resolves to (stfd tier vaultDoor01).
+[*]Break the file and the mod falls back to its defaults with a note in the log - an edit can never half-apply.
+[/list]
+
+[b]Compatibility[/b]
+[list]
+[*]Modded doors work automatically - the mod keys off the game's door and lock features, not name lists.
+[*]Multiplayer: install on server and clients. Server-only already fixes switch/key doors for every player; lockpicking runs on each player's machine, with the noise sent to the server so zombies genuinely wake.
+[*]EAC must be off (like any DLL mod); with EAC on the mod safely skips itself.
+[*]Uninstall any time by deleting the mod folder - saves are never touched.
 [/list]
