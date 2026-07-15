@@ -1,0 +1,94 @@
+STFD banner - AI image generation prompt
+====================================================
+
+Target: 19:6 banner (e.g. 1900x600). Most generators don't offer 19:6
+directly - generate at 21:9 and crop height, or generate 16:9 and
+extend/crop. Match the StowIt banner style (M00-StowIt
+docs/images/banner.png) so the M00 series reads as one family.
+
+--- GUARDRAIL-SAFE PROMPT (use this for ChatGPT/DALL-E) ---
+
+ChatGPT refuses the detailed prompt below: "lockpick + tension wrench +
+stealthy + door" pattern-matches to real-world break-in instructions.
+This variant keeps the scene and drops the trigger words - the crouched
+pose and the glowing lock plate tell the story on their own.
+
+Official key art for a fictional zombie-survival video game mod, in the
+photorealistic gritty render style of 7 Days To Die. Ultra-wide banner
+composition. A ruined building interior at night: rough wooden walls,
+cracked plaster, debris on worn floorboards, cold blue moonlight through
+a broken boarded window on the far left.
+
+On the right third: a massive weathered vault-style metal door with
+rusted rivets, a small barred viewing window, and a large ornate antique
+lock plate. Center-right, seen from behind at a low three-quarter angle:
+a lone survivor in ragged early-game clothing - worn t-shirt, patched
+trousers, cloth hand wraps, small shabby backpack - crouched low on one
+knee at the door, leaning close, hands raised to the old lock mechanism,
+which GLOWS from within: warm amber-gold light and drifting ember
+sparks pour from the lock plate around the survivor's hands, the only
+warm light in a cold dark scene. Behind the door's barred window, deep
+in shadow, the faint silhouette of a dormant zombie.
+
+The left third is dark negative space with a giant distressed stencil
+headline in cracked bone-white paint, all caps: "SHUT THE FRIGGING
+DOOR", and beneath it smaller in the same style: "SHUT OPEN DOORS. PICK
+LOCKED ONES. SPARE THE SLEDGE." Moody desaturated brown-and-charcoal
+palette, one warm amber accent, soft dark vignette, clear dark space in
+the bottom corners. Cinematic video game promotional art, no watermarks.
+
+If it still refuses: also remove the tagline line (the word PICK next to
+LOCKED can contribute) and add the text in an editor afterwards.
+
+--- ORIGINAL DETAILED PROMPT (for less strict generators) ---
+
+Ultra-wide cinematic game key-art banner, photorealistic post-apocalyptic
+video game render in the exact visual style of 7 Days To Die. Scene: a
+dark, decaying building interior at night - rough wooden walls, cracked
+plaster, debris on a worn cobblestone-and-plank floor, cold blue-grey
+moonlight leaking through a broken boarded window on the far left.
+
+On the RIGHT THIRD of the frame: a heavy weathered metal security door
+with a jail-bar window, rusted rivets and a big old lock plate, set in a
+dark doorframe. CENTER-RIGHT, seen from behind at a low three-quarter
+angle: a lone survivor in ragged STARTER gear - plain worn t-shirt,
+patched cargo trousers, fingerless cloth wraps, no armor - CROUCHED low
+on one knee at the door, leaning in, both hands working a thin lockpick
+and tension wrench in the lock. Body language is tense and stealthy:
+head ducked, weight forward, a small shabby backpack on the back.
+
+The lock is the light source: warm amber-gold light and delicate glowing
+sparks spill from the keyhole around the survivor's hands, casting the
+only warm glow in an otherwise cold dark scene - same golden particle
+energy as magic-light key art. A faint trail of amber particles drifts
+off the lock. Deep in the murky background shadows behind the door's
+barred window, the barely-visible silhouette of a sleeping zombie -
+subtle, easy to miss.
+
+The LEFT THIRD is darker negative space for typography: giant distressed
+stencil headline in cracked bone-white paint, all caps:
+"SHUT THE FRIGGING DOOR"
+and beneath it, smaller, same distressed style:
+"SHUT OPEN DOORS. PICK LOCKED ONES. SPARE THE SLEDGE."
+
+Moody, gritty, desaturated brown-and-charcoal palette with one warm
+amber accent. Sharp foreground detail, soft dark vignette at the edges.
+Leave clear dark space in the bottom-left corner and bottom-right corner
+(logos are composited there afterwards). No watermarks, no extra text.
+
+--- NOTES ---
+
+- Composite afterwards (same as StowIt banner): the red "7 Days To Die"
+  logo bottom-left, the Mad Moo cow shield badge bottom-right.
+- If the generator mangles the headline text, rerun the prompt with the
+  two text lines removed and the instruction "large empty dark wall
+  space upper left for typography", then set the title in an editor -
+  the StowIt font is a distressed stencil (e.g. Capture It / Veteran
+  Typewriter style), cream #E8DCC0, with the tagline in the same face
+  at ~1/5 size.
+- Tagline alternates, pick one:
+    SHUT OPEN DOORS. PICK LOCKED ONES. SPARE THE SLEDGE.
+    WERE YOU RAISED IN A BARN?
+    CLOSE WHAT'S OPEN. PICK WHAT'S SHUT. RETIRE THE SLEDGEHAMMER.
+- Thumbnail (400x225): reuse the survivor-at-the-door crop from the
+  center-right of the banner with just "STFD" as text.

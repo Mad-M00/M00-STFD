@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+	<Name value="M00-STFD"/>
+	<DisplayName value="Shut the Frigging Door (STFD)"/>
+	<Description value="Doors opened with a switch, key or trigger are no longer locked in the open position - close them, reopen them. Closed locked doors can be lockpicked like a safe: difficulty scales wood/iron/steel/vault. Player-placed doors are never touched."/>
+	<Author value="Brett"/>
+	<Version value="1.0.8"/>
+	<SkipWithAntiCheat value="true"/>
+</xml>

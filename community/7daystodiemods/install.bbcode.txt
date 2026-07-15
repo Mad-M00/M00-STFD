@@ -1,0 +1,11 @@
+One download, same folder everywhere - [b]who installs it decides what you get:[/b]
+
+[list=1]
+[*]Download the zip and extract it.
+[*][b]Single player / P2P host:[/b] drop the [b]M00-STFD[/b] folder into [b]...\7 Days To Die\Mods\[/b] and set EAC (anti-cheat) to off in the launcher. That's everything.
+[*][b]Dedicated server:[/b] install the same folder on [b]both[/b] the server and each player. Server-only already gives every player (modded or not) the core fix - switch/key doors unlock properly. The client install adds the press-E fix and the whole lockpicking minigame.
+[/list]
+
+An INSTALL.txt with these instructions ships inside the zip.
+
+Safe to add to an existing save and safe to remove: it never edits game files or world data beyond the door lock states it fixes.

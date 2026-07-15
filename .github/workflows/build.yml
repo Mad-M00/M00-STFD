@@ -1,0 +1,133 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+# Needed so the Release step can attach the zip to a GitHub Release.
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      # Full history so the dev badge step can count commits since the
+      # latest release tag.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Test
+        run: dotnet test tests/M00-STFD.Tests/M00-STFD.Tests.csproj -c Release --nologo
+
+      # Tag builds (v1.0.5) release exactly the tagged version. For branch
+      # builds, Major.Minor and the build offset come from the csproj (single
+      # source of truth) and the build number is the offset plus this
+      # workflow's run number.
+      - name: Compute version
+        id: version
+        shell: pwsh
+        run: |
+          if ("${{ github.ref }}" -like "refs/tags/v*") {
+            $version = "${{ github.ref_name }}".TrimStart("v")
+            $build = $version.Split(".")[-1]
+          }
+          else {
+            [xml]$proj = Get-Content M00-STFD.csproj
+            $props = $proj.Project.PropertyGroup
+            $major = ($props.MajorVersion | Where-Object { $_ }) | Select-Object -First 1
+            $minor = ($props.MinorVersion | Where-Object { $_ }) | Select-Object -First 1
+            $offset = ($props.BuildNumberOffset | Where-Object { $_ }) | Select-Object -First 1
+            $build = [int]$offset + ${{ github.run_number }}
+            $version = "$major.$minor.$build"
+          }
+          "version=$version" >> $env:GITHUB_OUTPUT
+          "build=$build" >> $env:GITHUB_OUTPUT
+          Write-Host "Mod version: $version"
+
+      # CI has no game install, so the csproj automatically compiles against
+      # the metadata-only reference assemblies committed under refs/.
+      - name: Build
+        run: dotnet build M00-STFD.csproj -c Release -p:BuildNumber=${{ steps.version.outputs.build }} --nologo
+
+      # One zip for everyone — the same mod folder works on clients and
+      # servers (the hooks self-select their side), so INSTALL.txt carries
+      # the who-installs-what instructions instead of separate packages.
+      - name: Package
+        shell: pwsh
+        run: |
+          $version = "${{ steps.version.outputs.version }}"
+          $stage = "staging/M00-STFD"
+          New-Item -ItemType Directory -Force $stage | Out-Null
+          Copy-Item ModAssets/* $stage -Recurse
+          Copy-Item packaging/INSTALL.txt $stage
+          Copy-Item bin/Release/net48/M00STFD.dll $stage
+          # Stamp the release version into ModInfo.xml so the game's mod
+          # list shows the same number as the zip and the assembly.
+          $modInfo = "$stage/ModInfo.xml"
+          (Get-Content $modInfo) -replace '<Version value="[^"]*"/>', "<Version value=""$version""/>" |
+            Set-Content $modInfo -Encoding UTF8
+          Compress-Archive -Path $stage -DestinationPath "M00-STFD-$version.zip"
+          Write-Host "Created M00-STFD-$version.zip"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: M00-STFD-${{ steps.version.outputs.version }}
+          path: M00-STFD-*.zip
+
+      # Pushing a tag like v1.0.5 publishes the zip as a GitHub Release.
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: M00-STFD-*.zip
+
+      # The homepage dev badge. With no release yet it shows this build's
+      # version; once releases exist it shows Major.Minor.<release patch +
+      # commits since>. Written to the badges branch via the contents API
+      # so no branch checkout is needed; shields.io serves it from there.
+      - name: Update dev version badge
+        if: github.ref == 'refs/heads/main'
+        continue-on-error: true
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = gh release view --repo ${{ github.repository }} --json tagName --jq .tagName 2>$null
+          if (-not $tag) {
+            $ver = "v${{ steps.version.outputs.version }}"
+          }
+          else {
+            $count = [int](git rev-list "$tag..HEAD" --count)
+            [xml]$proj = Get-Content M00-STFD.csproj
+            $props = $proj.Project.PropertyGroup
+            $major = ($props.MajorVersion | Where-Object { $_ }) | Select-Object -First 1
+            $minor = ($props.MinorVersion | Where-Object { $_ }) | Select-Object -First 1
+            # Same Major.Minor as the latest release: the dev number continues
+            # from the release patch (v1.0.5 + 2 commits = v1.0.7). A new
+            # Major.Minor line restarts the count from zero.
+            $tagParts = $tag.TrimStart("v").Split(".")
+            $build = $count
+            if ($tagParts[0] -eq $major -and $tagParts[1] -eq $minor) {
+              $build = [int]$tagParts[2] + $count
+            }
+            $ver = "v$major.$minor.$build"
+          }
+          $json = '{"schemaVersion":1,"label":"dev","message":"' + $ver + '","color":"orange"}'
+          $body = @{
+            message = "Update dev badge to $ver"
+            content = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($json))
+            branch  = "badges"
+          }
+          $sha = gh api "repos/${{ github.repository }}/contents/dev.json?ref=badges" --jq .sha
+          if ($sha) { $body.sha = $sha }
+          $body | ConvertTo-Json | gh api -X PUT "repos/${{ github.repository }}/contents/dev.json" --input -
+          Write-Host "Dev badge: $ver"

@@ -1,0 +1,70 @@
+[center][size=6][b]Shut the Frigging Door (STFD)[/b][/size]
+
+[size=4][i]Were you raised in a barn?[/i][/size][/center]
+
+You found the key. You flipped the switch. The door swung open... and now it's locked open forever, flapping in the apocalypse breeze. Meanwhile the door you actually want to close just stands there mocking you, and the one you want to open can only be negotiated with via sledgehammer.
+
+Enough. [b]STFD fixes doors.[/b]
+
+[size=5][b]Shut It[/b][/size]
+
+Doors opened with keys, key racks, and switches are now properly unlocked — walk through, then close the frigging door behind you. Works on existing saves, survives quest resets. Vaults, garage doors, roll-ups, hatches, jail doors, drawbridges: if it swings, slides or rolls and got stuck locked open, it's fixed.
+
+[size=5][b]Pick It[/b][/size]
+
+Locked doors can now be lockpicked — no more turning perfectly good doors into kindling. Same hold-to-pick minigame as a safe or a police car.
+
+[list]
+[*][b]Tougher doors, tougher picks.[/b] Pick difficulty scales with the door type — a rickety wooden door pops quickly; a vault door will eat your picks and your patience.
+[*][b]Snap a pick, make some noise.[/b] A breaking lockpick can alert nearby zombies. That quiet loot run can go loud fast. Even the soft click of a lock giving way can wake whatever is standing right behind the door.
+[*][b]Crouch, you animal.[/b] Sneaking dampens the noise from a broken pick, and From The Shadows dampens it further — your stealth build applies exactly as it does to footsteps.
+[*][b]Perks matter.[/b] Lock Picking perk levels reduce break chance and speed things up, same as chests. A skilled infiltrator picks a door in seconds; a fresh spawn should probably keep the sledge handy.
+[*][b]No pick-eating slot machines.[/b] Progress survives a snapped pick, retries get safer the closer the lock is to giving, and after a few snaps on the same door the next attempt is guaranteed. Locks open; they don't farm you.
+[/list]
+
+[size=5][b]Straight answers[/b][/size]
+
+[list]
+[*][b]Can a snapped pick wake a whole sleeper room?[/b] Yes — if the room is close and its sleepers have spawned in. The noise rolls a chance against every zombie within about 8 metres, sleeping or not, walls or not. It will NOT reach across the POI into rooms that haven't spawned yet, and it never touches the heat map — no screamers.
+[*][b]Can quest doors be picked? Is that cheating?[/b] Locked doors in quest POIs can be picked — exactly as they could always be sledgehammered, just quieter and without destroying the door. Picking never completes or skips an objective (an objective switch still has to be flipped), and a quest reset restores every lock. It's an infiltration tool, not a quest skip.
+[/list]
+
+[size=5][b]What it never touches[/b][/size]
+
+[list]
+[*][b]Player-placed doors.[/b] Your base door keeps its owner and its lock — it can't be closed by strangers and it can't be picked. Base security is exactly vanilla.
+[*][b]Trader gates.[/b] They lock for the night as always, and no, you can't pick your way into Rekt's bedroom.
+[/list]
+
+[size=5][b]Tune It[/b][/size]
+
+Everything is one plain-text file (STFDConfig.xml): both features have their own on/off switch, and every number — pick times, break chances, per-door difficulty rules, noise loudness, sneak muffling — is yours to change. Apply edits live with the [b]stfd[/b] console command:
+
+[code]stfd reload            load your config changes without restarting
+stfd                   show the current settings
+stfd tier vaultDoor01  show which difficulty a door resolves to[/code]
+
+Break the file? The mod falls back to its defaults and tells you in the log. You can't hurt your save with it.
+
+[size=5][b]Requirements[/b][/size]
+
+[list]
+[*]7 Days to Die V3.0+
+[*]EAC disabled (Harmony/DLL mod)
+[*]Single player ready. Dedicated servers: install the same folder on the server AND on players — the server side unlocks switch/key doors for everyone (even unmodded players), the client side provides the press-E fix and the lockpick minigame, and pick noise is sent to the server so zombies genuinely wake for every player.
+[/list]
+
+[size=5][b]Install[/b][/size]
+
+Drop the [b]M00-STFD[/b] folder into your Mods folder — game folder for players, server root for dedicated servers, both for multiplayer (an INSTALL.txt inside spells out who installs what). Then go close some doors.
+
+And shut the door on your way out.
+
+[size=5][b]Links[/b][/size]
+
+[list]
+[*][url=https://github.com/Mad-M00/M00-STFD/releases/latest]Download the latest release[/url]
+[*][url=https://github.com/Mad-M00/M00-STFD/blob/main/docs/user/getting-started.md]Player guide[/url] - short pages in plain language
+[*][url=https://github.com/Mad-M00/M00-STFD/blob/main/docs/user/faq.md]FAQ[/url] - multiplayer installs, trader gates, quest doors, sleeper wakes
+[*][url=https://github.com/Mad-M00/M00-STFD]Source code on GitHub[/url] - fully open, 47 unit tests
+[/list]

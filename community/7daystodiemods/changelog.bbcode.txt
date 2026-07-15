@@ -1,0 +1,9 @@
+[b]1.0[/b] - initial public release
+[list]
+[*]Shut It: doors opened by switches, keys and triggers are properly unlocked - close and reopen them freely. Applies on trigger, on chunk load, and on pressing E.
+[*]Pick It: closed locked world doors can be lockpicked like safes; difficulty tiers wood/iron/steel/vault, Lock Picking perk applies.
+[*]Noise: the unlock click can wake zombies right behind the door; a snapping pick can pull the room. Sneaking and From The Shadows muffle it. Server-authoritative in multiplayer.
+[*]Fair retries: progress survives snapped picks, retry break chance shrinks as the lock nears open, mercy cap guarantees the attempt after 4 snaps.
+[*]Fully configurable via STFDConfig.xml with live reload (stfd console command).
+[*]Never touches player-placed doors or trader areas.
+[/list]

@@ -1,0 +1,30 @@
+# Build output
+bin/
+obj/
+
+# Release packaging (the CI workflow stages and zips here; local dry runs too)
+staging/
+M00-STFD-*.zip
+
+# Test results
+TestResults/
+*.trx
+
+# IDE and editor state
+.vs/
+.vscode/
+.idea/
+*.user
+
+# Personal Claude Code settings (machine-specific deploy hook)
+.claude/settings.local.json
+*.suo
+*.DotSettings.user
+
+# OS noise
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# NOTE: refs/ (metadata-only reference assemblies) is intentionally COMMITTED -
+# the GitHub workflow needs it to compile without a game install.

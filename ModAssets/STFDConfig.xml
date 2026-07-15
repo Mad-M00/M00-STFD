@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Shut the Frigging Door (STFD) - configuration.
+
+  This file ships identical to the built-in defaults; edit it to retune.
+  Apply changes in-game without restarting: press F1 and type  stfd reload
+  ("stfd" alone shows the current settings, "stfd tier <blockName>" shows
+  which difficulty a door resolves to).
+
+  If the file is broken the mod ignores ALL of it and uses the defaults
+  (a note appears in the game log), so you cannot half-apply an edit.
+
+  THE TWO FEATURES (each can be turned off alone):
+
+  <CloseOpenDoors enabled="true"/>
+      Doors that a switch, key or trigger left locked in the OPEN
+      position become unlocked so you can close them.
+
+  <Lockpicking enabled="true" ...>
+      Closed locked world doors can be picked like a safe.
+
+  LOCKPICKING ATTRIBUTES
+  item        - the item consumed when a pick snaps
+  defaultTier - tier used when no rule below matches
+  maxBreaks   - mercy cap: after this many snaps on one door the next
+                attempt is guaranteed to succeed
+
+  HOW A DOOR'S DIFFICULTY IS FOUND, top to bottom:
+    1. The first <Door> rule whose pattern matches the block name wins.
+       '*' matches anything: "vault*" catches vaultDoor01 and vaultHatch01.
+    2. Otherwise the first <Material> rule matching the block's material.
+    3. Otherwise the defaultTier.
+
+  TIER ATTRIBUTES
+  seconds     - base pick time before perks (vanilla gun safe = 15)
+  breakChance - base chance an attempt snaps the pick (vanilla = 0.75);
+                the Lock Picking perk reduces both, exactly as for safes.
+                The chance only covers the work still ahead: a retry on a
+                nearly-open lock is far less likely to snap than a fresh
+                attempt, so locks don't eat picks at the finish line.
+
+  NOISE - picking has consequences. The unlock click can wake zombies
+  directly behind the door; a snapping pick can pull the room and nearby.
+    radius             - metres the noise carries
+    chance             - odds each zombie in range comes to investigate
+    sneakFactor        - how much quieter crouching makes you (0.6 = 40%
+                         less); From The Shadows quiets you further on top
+    investigateSeconds - how long alerted zombies search around the door
+  Set both radius values to 0 for silent picking.
+-->
+<STFD>
+  <CloseOpenDoors enabled="true" />
+  <Lockpicking enabled="true" item="resourceLockPick" defaultTier="iron" maxBreaks="4">
+    <Tiers>
+      <Tier name="wood" seconds="10" breakChance="0.75" />
+      <Tier name="iron" seconds="15" breakChance="0.75" />
+      <Tier name="steel" seconds="20" breakChance="0.75" />
+      <Tier name="vault" seconds="30" breakChance="0.75" />
+    </Tiers>
+    <DoorRules>
+      <Door match="vault*" tier="vault" />
+      <Door match="jailDoor*" tier="steel" />
+      <Door match="steelGarageDoor*" tier="steel" />
+      <Door match="shuttersSteel*" tier="steel" />
+      <Door match="cellarDoorDoubleSteel" tier="steel" />
+      <Door match="commercialBulletproof*" tier="steel" />
+      <Door match="elevator*" tier="steel" />
+      <Door match="iron*" tier="iron" />
+      <Door match="shuttersIron*" tier="iron" />
+      <Door match="cellarDoorDoubleIron" tier="iron" />
+      <Door match="manholeHatch" tier="iron" />
+      <Door match="rollUp*" tier="iron" />
+      <Door match="chainlink*" tier="iron" />
+      <Door match="metalReinforcedWoodDrawBridge*" tier="iron" />
+    </DoorRules>
+    <MaterialRules>
+      <Material match="Mwood*" tier="wood" />
+      <Material match="Mglass*" tier="wood" />
+      <Material match="Miron*" tier="iron" />
+      <Material match="Mmetal*" tier="iron" />
+      <Material match="Msteel*" tier="steel" />
+    </MaterialRules>
+    <Noise sneakFactor="0.6" investigateSeconds="20">
+      <Unlock radius="3" chance="0.5" />
+      <Break radius="8" chance="0.8" />
+    </Noise>
+  </Lockpicking>
+</STFD>

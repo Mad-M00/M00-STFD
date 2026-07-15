@@ -1,0 +1,33 @@
+Shut the Frigging Door (STFD) - installation
+====================================================
+
+The same mod folder works everywhere. Who installs it decides what
+you get:
+
+SINGLE PLAYER (and P2P hosts)
+  1. Copy the M00-STFD folder into:
+       ...\Steam\steamapps\common\7 Days To Die\Mods\
+  2. Set EAC (anti-cheat) to OFF in the game launcher - this is a
+     DLL mod, like any other code mod.
+  3. Done. Everything works: close the stuck doors, pick the locked
+     ones, wake the neighbours.
+
+DEDICATED SERVERS
+  Install the same folder in BOTH places:
+
+  - Server:  <server root>\Mods\M00-STFD
+      This alone already gives EVERY player - modded or not - the
+      core fix: switch/key/trigger doors unlock properly and can be
+      closed.
+
+  - Each player:  <game>\Mods\M00-STFD  (EAC off)
+      This adds the press-E fix and the entire LOCKPICKING minigame
+      (the pick timer runs on the player's own screen; pick noise is
+      sent to the server so zombies genuinely wake for everyone).
+
+TUNING
+  STFDConfig.xml in this folder holds every setting - feature
+  switches, pick difficulty, noise. Edit it, then press F1 in game
+  and type:  stfd reload
+
+Full documentation: https://github.com/Mad-M00/M00-STFD
